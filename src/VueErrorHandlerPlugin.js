@@ -36,4 +36,10 @@ export class VueErrorHandlerPlugin {
     return this;
   }
 
+  removeAllMiddlewares() {
+    this.middlewares = [];
+
+    return this;
+  }
+
 }
