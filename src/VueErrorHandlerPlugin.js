@@ -59,3 +59,5 @@ export class VueErrorHandlerPlugin {
     Vue.prototype.$vueErrorHandlerPlugin = this;
   }
 }
+
+export default (new VueErrorHandlerPlugin());
