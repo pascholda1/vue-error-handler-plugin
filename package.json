@@ -2,7 +2,7 @@
   "name": "@pascholda1/vue-error-handler-plugin",
   "version": "2.0.0",
   "description": "Plugin to register middlewares to handle errors in a Vue app",
-  "main": "index.js",
+  "main": "dist/VueErrorHandlerPlugin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/pascholda1/vue-error-handler-plugin#readme",
   "dependencies": {
+    "@babel/preset-env": "^7.20.2",
     "babel": "^6.23.0",
     "grunt": "^1.6.1",
     "grunt-babel": "^8.0.0"
