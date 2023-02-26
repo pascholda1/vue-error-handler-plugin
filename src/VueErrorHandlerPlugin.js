@@ -20,4 +20,18 @@ export class VueErrorHandlerPlugin {
 
   }
 
+  removeMiddleware(handler) {
+    const middlewareIndex = this.middlewares
+        .findIndex(({handler: registeredHandler}) =>
+            registeredHandler === handler,
+        );
+
+    if (middlewareIndex === -1) {
+      throw new Error(`unable to remove middleware. not found.`);
+    }
+
+    this.middlewares.splice(middlewareIndex, 1);
+
+  }
+
 }
