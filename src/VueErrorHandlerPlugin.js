@@ -2,7 +2,7 @@ export class VueErrorHandlerPlugin {
 
   middlewares = [];
 
-  registerMiddleware({
+  addMiddleware({
     handler,
     sync = true,
     errorClass = null,
