@@ -4,15 +4,14 @@ export class VueErrorHandlerPlugin {
 
   addMiddleware({
     handler,
-    sync = true,
-    errorClass = null,
+    forErrorClass = null,
     index = -1,
   }) {
     if (typeof handler !== 'function') {
       throw new Error(`cannot register middleware. Handler must be callable.`);
     }
 
-    const middlewareConfig = {handler, sync, errorClass};
+    const middlewareConfig = {handler, forErrorClass};
 
     index === -1
     ? this.middlewares.push(middlewareConfig)
