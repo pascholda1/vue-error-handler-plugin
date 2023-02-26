@@ -1,0 +1,30 @@
+{
+  "name": "@pascholda1/vue-error-handler-plugin",
+  "version": "2.0.0",
+  "description": "Plugin to register middlewares to handle errors in a Vue app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pascholda1/vue-error-handler-plugin.git"
+  },
+  "keywords": [
+    "vuejs",
+    "plugin",
+    "middleware",
+    "error-handling"
+  ],
+  "author": "Simon Paschold <dev@k0815.rocks>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pascholda1/vue-error-handler-plugin/issues"
+  },
+  "homepage": "https://github.com/pascholda1/vue-error-handler-plugin#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "grunt": "^1.6.1",
+    "grunt-babel": "^8.0.0"
+  }
+}
