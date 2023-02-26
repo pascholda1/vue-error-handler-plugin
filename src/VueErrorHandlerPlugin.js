@@ -18,6 +18,7 @@ export class VueErrorHandlerPlugin {
     ? this.middlewares.push(middlewareConfig)
     : this.middlewares.splice(index, 0, middlewareConfig);
 
+    return this;
   }
 
   removeMiddleware(handler) {
@@ -32,6 +33,7 @@ export class VueErrorHandlerPlugin {
 
     this.middlewares.splice(middlewareIndex, 1);
 
+    return this;
   }
 
 }
