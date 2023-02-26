@@ -20,7 +20,7 @@ export class VueErrorHandlerPlugin {
     return this;
   }
 
-  removeMiddleware(handler) {
+  removeMiddleware({handler}) {
     const middlewareIndex = this.middlewares
         .findIndex(({handler: registeredHandler}) =>
             registeredHandler === handler,
