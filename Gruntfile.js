@@ -20,7 +20,6 @@ module.exports = function(grunt) {
     },
   });
 
-  grunt.loadNpmTasks('grunt-vueify');
   grunt.loadNpmTasks('grunt-babel');
 
   grunt.registerTask('default', ['babel']);
