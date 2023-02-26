@@ -41,4 +41,21 @@ export class VueErrorHandlerPlugin {
     return this;
   }
 
+  async handleError(_this, error) {
+
+    const filteredMiddlewares = this.middlewares
+        .filter(({forErrorClass}) =>
+            forErrorClass === null || error instanceof forErrorClass,
+        );
+
+    for (const {handler} of filteredMiddlewares) {
+      await handler(error);
+    }
+
+  }
+
+  install(Vue) {
+    Vue.prototype.$errorHandler = (error) => this.handleError(this, error);
+    Vue.prototype.$vueErrorHandlerPlugin = this;
+  }
 }
