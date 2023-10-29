@@ -1,69 +1,69 @@
 export class VueErrorHandlerPlugin {
 
-  middlewares = []
+  middlewares = [];
 
-  addMiddleware ({
+  addMiddleware({
     handler,
     forErrorClass = null,
     index = -1,
   }) {
     if (typeof handler !== 'function') {
-      throw new Error(`cannot register middleware. Handler must be callable.`)
+      throw new Error(`cannot register middleware. Handler must be callable.`);
     }
 
-    const middlewareConfig = { handler, forErrorClass }
+    const middlewareConfig = {handler, forErrorClass};
 
     index === -1
-      ? this.middlewares.push(middlewareConfig)
-      : this.middlewares.splice(index, 0, middlewareConfig)
+    ? this.middlewares.push(middlewareConfig)
+    : this.middlewares.splice(index, 0, middlewareConfig);
 
-    return this
+    return this;
   }
 
-  removeMiddleware ({ handler }) {
+  removeMiddleware({handler}) {
     const middlewareIndex = this.middlewares
-      .findIndex(({ handler: registeredHandler }) =>
-        registeredHandler === handler,
-      )
+        .findIndex(({handler: registeredHandler}) =>
+            registeredHandler === handler,
+        );
 
     if (middlewareIndex === -1) {
-      throw new Error(`unable to remove middleware. not found.`)
+      throw new Error(`unable to remove middleware. not found.`);
     }
 
-    this.middlewares.splice(middlewareIndex, 1)
+    this.middlewares.splice(middlewareIndex, 1);
 
-    return this
+    return this;
   }
 
-  removeAllMiddlewares () {
-    this.middlewares = []
+  removeAllMiddlewares() {
+    this.middlewares = [];
 
-    return this
+    return this;
   }
 
-  async handleError (_this, handlerArguments) {
-    const [error] = handlerArguments
+  async handleError(_this, handlerArguments) {
+    const [error] = handlerArguments;
 
     const filteredMiddlewares = this.middlewares
-      .filter(({ forErrorClass }) =>
-        forErrorClass === null || error instanceof forErrorClass,
-      )
+        .filter(({forErrorClass}) =>
+            forErrorClass === null || error instanceof forErrorClass,
+        );
 
-    for (const { handler } of filteredMiddlewares) {
-      await handler(...handlerArguments)
+    for (const {handler} of filteredMiddlewares) {
+      await handler(...handlerArguments);
     }
 
   }
 
-  install (app) {
-    const _this = this
+  install(app) {
+    const _this = this;
 
-    app.config.globalProperties.$errorHandler = function () {
-      return _this.handleError(this, arguments)
-    }
-    app.config.globalProperties.$vueErrorHandlerPlugin = this
+    app.config.globalProperties.$errorHandler = function() {
+      return _this.handleError(_this, arguments);
+    };
+    app.config.globalProperties.$vueErrorHandlerPlugin = this;
     // app.provide(this)
   }
 }
 
-export default (new VueErrorHandlerPlugin())
+export default (new VueErrorHandlerPlugin());
